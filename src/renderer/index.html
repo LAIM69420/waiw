@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Wallpaper Gen</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Daily Wallpaper Gen</h1>
+          <p id="dataPath"></p>
+        </div>
+        <div class="actions">
+          <button id="generateNow" type="button">Generate now</button>
+          <button id="setLatest" type="button">Set latest</button>
+        </div>
+      </header>
+
+      <section id="status" class="status" role="status">Loading settings...</section>
+
+      <form id="settingsForm" class="settings-grid">
+        <section class="panel">
+          <h2>Provider</h2>
+          <label>
+            Provider
+            <select id="provider" name="provider"></select>
+          </label>
+          <label>
+            Model
+            <input id="model" name="model" type="text" autocomplete="off" />
+          </label>
+          <label id="localEndpointWrap">
+            Local endpoint
+            <input id="localEndpoint" name="localEndpoint" type="url" autocomplete="off" />
+          </label>
+          <label id="apiKeyWrap">
+            API key
+            <input id="apiKey" name="apiKey" type="password" autocomplete="new-password" placeholder="Leave blank to keep existing key" />
+          </label>
+          <p id="providerHelp" class="muted"></p>
+          <p id="keyStatus" class="muted"></p>
+        </section>
+
+        <section class="panel">
+          <h2>Wallpaper</h2>
+          <label>
+            Prompt
+            <textarea id="prompt" name="prompt" rows="7"></textarea>
+          </label>
+          <label>
+            Style
+            <input id="style" name="style" type="text" autocomplete="off" />
+          </label>
+          <label>
+            Resolution
+            <select id="resolution" name="resolution">
+              <option value="1920x1080">1920x1080</option>
+              <option value="2560x1440">2560x1440</option>
+              <option value="3840x2160">3840x2160</option>
+              <option value="3440x1440">3440x1440</option>
+              <option value="1366x768">1366x768</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="panel">
+          <h2>Schedule</h2>
+          <label>
+            Generate daily at
+            <input id="scheduleTime" name="scheduleTime" type="time" />
+          </label>
+          <label class="check">
+            <input id="autoSetWallpaper" name="autoSetWallpaper" type="checkbox" />
+            Set generated wallpaper automatically
+          </label>
+          <label class="check">
+            <input id="runOnStartup" name="runOnStartup" type="checkbox" />
+            Start when Windows signs in
+          </label>
+          <div class="latest">
+            <span>Latest file</span>
+            <code id="latestWallpaperPath">None yet</code>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Debugging</h2>
+          <p class="muted">Logs redact keys and authorization headers. Prompts are not written to logs.</p>
+          <button id="openLogs" type="button">Open logs</button>
+          <div class="latest">
+            <span>Log file</span>
+            <code id="logFile"></code>
+          </div>
+        </section>
+
+        <footer class="form-footer">
+          <button id="saveSettings" type="submit">Save settings</button>
+        </footer>
+      </form>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

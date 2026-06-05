@@ -1,0 +1,45 @@
+{
+  "name": "waiw",
+  "version": "0.1.0",
+  "description": "Windows tray app that generates and sets a fresh AI wallpaper every day.",
+  "private": true,
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win nsis",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "node-schedule": "^2.1.1",
+    "openai": "^4.104.0",
+    "wallpaper": "^7.0.1"
+  },
+  "optionalDependencies": {
+    "keytar": "^7.9.0"
+  },
+  "devDependencies": {
+    "electron": "^42.3.3",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.dailywallpapergen.app",
+    "productName": "waiw",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true
+    }
+  }
+}
